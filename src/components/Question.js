@@ -1,24 +1,24 @@
 import './Question.css';
 
-export default function Question () {
+export default function Question (props) {
+
+    const answerElements = props.gameAnswers.map(answerObj => {
+        return (
+          <li>
+            <button
+              className="answer-btn"
+              onClick={() => {props.handleAnswer(answerObj, props.questionKey)}}
+              >{answerObj.answer}</button>
+          </li>
+        );
+    })
 
 
   return (
     <div className="question">
-      <h5 className="question-text">How would one say goodbye in Spanish?</h5>
+      <h5 className="question-text">{props.question}</h5>
       <ul className="btn-list-container">
-        <li>
-          <button className="answer-btn">Adiós</button>
-        </li>
-        <li>
-          <button className="answer-btn">Hola</button>
-        </li>
-        <li>
-          <button className="answer-btn">Au Revoir</button>
-        </li>
-        <li>
-          <button className="answer-btn">Salir</button>
-        </li>
+        {answerElements}
       </ul>
     </div>
   )
