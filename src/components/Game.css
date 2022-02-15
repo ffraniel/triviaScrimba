@@ -1,0 +1,28 @@
+.game {
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+}
+
+.game .game-container {
+  padding: 25px 75px 25px;
+}
+.game .submit {
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  padding: 10px 22px;
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.25s;
+  margin: 0 auto 25px;
+}
+
+.game .submit:hover {
+  background-color: #4f5986;
+}
+.game .submit:active {
+  background-color: #404b86;
+}

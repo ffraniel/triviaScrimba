@@ -1,0 +1,41 @@
+.intro {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro h1, .intro h3 {
+  margin: 0;
+}
+
+.intro .content {
+  text-align: center;
+}
+
+.intro .content h1 {
+  color: #293264;
+  font-family: 'Karla', sans-serif;
+  margin-bottom: 7px;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.intro .content h3  {
+  color: #293264;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.intro .content button {
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  border: none;
+  border-radius: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  padding: 16px 30px;
+}
