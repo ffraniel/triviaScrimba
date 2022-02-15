@@ -9,11 +9,13 @@
   margin: auto;
 }
 
-.question h5 {
+.question .question-text {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 22px;
   color: #293264;
   font-family: 'Karla', sans-serif;
+  margin: 30px auto 34px;
+  text-align: left;
 }
 
 .answer-btn {
@@ -37,7 +39,23 @@
   border: solid #ffffff 2px;
 }
 
+.completed .answer-btn {
+  color: #29326483;
+}
+
+.answer-btn.correct {
+  background-color: #94D7A2;
+  border: solid #ffffff 2px;
+  color: #293264;
+}
+
+.answer-btn.incorrect {
+  background-color: #F8BCBC;
+  border: solid #ffffff 2px;
+}
+
 .btn-list-container {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 26px;
 }

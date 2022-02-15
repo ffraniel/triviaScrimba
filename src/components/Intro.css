@@ -30,7 +30,7 @@
   margin-bottom: 30px;
 }
 
-.intro .content button {
+.intro .start-btn  {
   background-color: #4D5B9E;
   color: #F5F7FB;
   border: none;
@@ -38,4 +38,13 @@
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   padding: 16px 30px;
+}
+
+.intro .start-btn:hover {
+  background-color: #4f5986;
+}
+
+.intro .start-btn:active, .intro .start-btn.selected {
+  background-color: #404b86;
+  border: solid #ffffff 2px;
 }

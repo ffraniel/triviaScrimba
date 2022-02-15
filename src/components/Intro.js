@@ -16,7 +16,7 @@ export default function Intro (props) {
       <div class="content">
         <h1 className="title">Quizzical</h1>
         <h3>Trivia quiz for the best!</h3>
-        <button onClick={()=> {props.setGameStarted(prev => !prev)}}>Start Quiz</button>
+        <button className="start-btn" onClick={()=> {props.setGameStarted(prev => !prev)}}>Start Quiz</button>
       </div>
     </main>
   )
