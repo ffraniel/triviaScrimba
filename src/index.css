@@ -5,3 +5,16 @@ body {
   background-color: #F5F7FB;
   height: 100%;
 }
+
+:root {
+  --incorrect: #F8BCBC;
+  --correct: #94D7A2;
+  --text-blue: #293264;
+  --blue: #4D5B9E;
+  --dark-blue: #404b86;
+  --faint-blue: #DBDEF0;
+  --btn-faint-blue: #D6DBF5;
+  --white: #F5F7FB;
+  --karla: 'Karla', sans-serif;
+  --inter: 'Inter', sans-serif;
+}

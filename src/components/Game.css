@@ -8,12 +8,12 @@
   padding: 25px 75px 25px;
 }
 .game .submit {
-  background-color: #4D5B9E;
-  color: #F5F7FB;
+  background-color: var(--blue);
+  color: var(--white);
   padding: 10px 22px;
   font-size: 18px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-family: var(--inter);
+  font-weight: 500;
   border: none;
   border-radius: 10px;
   transition: background-color 0.25s;
@@ -21,8 +21,15 @@
 }
 
 .game .submit:hover {
-  background-color: #4f5986;
+  background-color: var(--dark-blue);
 }
 .game .submit:active {
-  background-color: #404b86;
+  background-color: var(--dark-blue);
+}
+
+.score-container h3 {
+  margin-top: 0;
+  color: var(--text-blue);
+  font-size: 18px;
+  font-family: var(--inter); 
 }
