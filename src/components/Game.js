@@ -3,6 +3,8 @@ import './Game.css';
 import Question from './Question';
 import blueBlob from '../images/blueBlob.png';
 import yellowBlob from '../images/yellowBlob.png';
+import ShuffleArray from '../utility/ShuffleArray';
+import { nanoid } from 'nanoid'
 
 export default function Game () {
 
@@ -19,77 +21,83 @@ export default function Game () {
     fetch('https://opentdb.com/api.php?amount=5&type=multiple')
       .then(res => res.json())
       .then(data => {
-        const questionList = data.results.map(questionObj => {
-
-          const answerArr = [];
-          for (var i = 0; i < questionObj.incorrect_answers.length; i++) {
-            answerArr.push({
-              answer: questionObj.incorrect_answers[i],
-              selected: false,
-              isCorrect: false
-            })
-          }
-          answerArr.push({
-            answer: questionObj.correct_answer,
-            selected: false,
-            isCorrect: true
+        console.log("data: ", data.results)
+        // for each item (map)
+        // create array of answer and false answers
+        // set ID 
+        const manipulatedQuestionsArray = data.results.map(questionObj => {
+          const questionID = nanoid();
+          let updatedIncorrects = [...questionObj.incorrect_answers].map(answer => {
+            return {
+              answer: answer,
+              isSelected: false,
+              isCorrect: false,
+              id: questionID,
+              question: questionObj.question
+            }
           });
-          let answerList = answerArr
-            .map(value => ({ value: value, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ value }, id) => value)
-            .map((item, key)=> ({
-              ...item, 
-              id: key
-            }));
-            console.log(answerList)
-
-          return {
-            ...questionObj,
-            gameAnswers: answerList
-          }
-        })
-        
-        setQuestions(questionList);
+          let updatedCorrect = {
+            answer: questionObj.correct_answer,
+            isSelected: false,
+            isCorrect: true,
+            id: questionID,
+            question: questionObj.question
+          };
+          let options = [...updatedIncorrects, updatedCorrect];
+          // shuffle
+          let shuffledOptions = ShuffleArray(options);
+           // attach t0 each question object
+           
+           return {
+             ...questionObj,
+             gameObject: shuffledOptions
+            }
+          });
+      // set to state <<<<<<<<<<<
+      setQuestions(manipulatedQuestionsArray);
       })
-
-
   }, []);
 
   useEffect(() => {
-    console.log("you answered");
+    
+
   }, [questions]);
 
-  function handleAnswer (answer, questionKey) {
-    console.log(answer, questionKey);
+  function handleSelect (answerObj) {
+    let inputID = answerObj.id;
+    let inputAnswer = answerObj.answer;
+    console.log(inputID, inputAnswer);
+
     setQuestions(prevQuestions => {
-      let newQuestions = [];
-      for (var i = 0; i < prevQuestions.length; i++) {
-        if (i === questionKey) {
-          console.log("it's ", i);
-          newQuestions.push({
-            ...prevQuestions[i],
-            selected: !prevQuestions[i].selected
-          })
-        } else {
-          console.log("just pushing at ", i);
-          newQuestions.push(prevQuestions[i])
-        }
-      }
-      console.log(newQuestions);
-      setQuestions(newQuestions);
+      const updatedQuestions = prevQuestions.map(prevQuestion => {
+        const updatedGameObj = prevQuestion.gameObject.map(gameObjectAnswer => {
+          if (gameObjectAnswer.id === inputID) {
+            //update selected and return
+            return {
+              ...gameObjectAnswer,
+              isSelected: true
+            }
+          } else {
+            //return item unchanged
+            return gameObjectAnswer;
+          }
+        });
+        return updatedGameObj;
+
+      })
+      
+      return updatedQuestions;
     })
   }
 
-  const questionElements = questions.map((questionObj, questionKey) => {
+  const questionElements = questions.map(questionObj => {
         
     return (
       <Question 
+        gameObj={questionObj.gameObject}
         question={questionObj.question}
-        gameAnswers={questionObj.gameAnswers}
-        correctAnswer={questionObj.correct_answer}
-        handleAnswer={handleAnswer}
-        questionKey={questionKey}
+        handleSelect={handleSelect}
+        key={questionObj.id}
       />
       )
     }

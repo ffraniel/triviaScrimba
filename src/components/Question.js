@@ -2,17 +2,19 @@ import './Question.css';
 
 export default function Question (props) {
 
-    const answerElements = props.gameAnswers.map(answerObj => {
+    const answerElements = props.gameObj.map(gameAnswerObj => {
         return (
-          <li>
-            <button
-              className="answer-btn"
-              onClick={() => {props.handleAnswer(answerObj, props.questionKey)}}
-              >{answerObj.answer}</button>
+         <li>
+            <button onClick={()=>{props.handleSelect(gameAnswerObj)}}>
+              Answer: {gameAnswerObj.answer}
+              <br/>
+              is selected {gameAnswerObj.isSelected ? "yes": "non"}
+              <br/>
+              is correct {gameAnswerObj.isCorrect ? "yes": "non"}
+              </button>
           </li>
         );
     })
-
 
   return (
     <div className="question">
